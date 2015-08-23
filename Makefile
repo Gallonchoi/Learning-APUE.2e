@@ -1,6 +1,6 @@
 CC = clang
 FLAG = -Wall -g -O2
-TARGETS = fig1-1 fig1-2
+TARGETS = fig1-1 fig1-2 fig1-3
 OBJ = $(addsuffix .o, $(TARGETS))
 
 .PHONY: all clean
