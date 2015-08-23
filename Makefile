@@ -1,18 +1,20 @@
-CC=clang
-FLAG=-Wall -g -O2
+CC = clang
+FLAG = -Wall -g -O2
+TARGETS = fig1-1 fig1-2
+OBJ = $(addsuffix .o, $(TARGETS))
 
 .PHONY: all clean
 
-all: fig1-1
+all: $(TARGETS)
 
 err.o:
 	$(CC) $(FLAG) -c err.c
 
-fig1-1.o:
-	$(CC) $(FLAG) -c fig1-1.c
+$(OBJ): err.o
+	$(CC) $(FLAG) -c $(addsuffix .c, $(basename $@))
 
-fig1-1: err.o fig1-1.o
-	$(CC) $(FLAG) err.o fig1-1.o -lm -o fig1-1
+$(TARGETS): err.o $(addsuffix .o, $(TARGETS))
+	$(CC) $(FLAG) err.o $(addsuffix .o, $@) -lm -o $@
 
 clean:
-	rm *.o fig1-1
+	rm *.o $(TARGETS)
