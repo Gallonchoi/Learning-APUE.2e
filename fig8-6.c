@@ -3,7 +3,7 @@
 static void charatatime(char* str) {
     char* ptr;
     int c;
-    setbuf(stdout, NULL);
+    setbuf(stdout, NULL);  // set unbuffered
     ptr = str;
     while((c = *ptr++) != 0) {
         putc(c, stdout);
